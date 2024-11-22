@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" stylesheets="/styles/authentication.css" fx:controller="com.ecole_primaire.HomeController" >
+    <VBox fx:id="loginContainer" spacing="30" alignment="CENTER" maxWidth="600" maxHeight="700" styleClass="login-container">
+        <ImageView fx:id="logo" fitWidth="150" fitHeight="150" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+        <Image url="/assets/logo_school.png"/>
+        </ImageView>
+        <Text text="Welcome Back" styleClass="title"/>
+        <VBox spacing="20" alignment="CENTER" styleClass="form-container">
+            <TextField fx:id="usernameField" promptText="Username" styleClass="input-field"/>
+            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
+        </VBox>
+        <Button text="Login" fx:id="loginButton" styleClass="login-button" onAction="#handleLogin"/>
+        <Hyperlink text="Forgot Password?" fx:id="forgotPasswordLink" styleClass="forgot-link"/>
+    </VBox>
+</StackPane>

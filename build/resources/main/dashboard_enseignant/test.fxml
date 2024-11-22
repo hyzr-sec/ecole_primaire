@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefWidth="569.0" stylesheets="/styles/school_styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Top section: Title -->
+    <top>
+        <Label id="title-label" text="School Management System" BorderPane.alignment="CENTER" />
+    </top>
+
+    <!-- Center section: Tabs for Students, Teachers, and Courses -->
+    <center>
+        <TabPane id="main-tabpane">
+            <!-- Students Tab -->
+            <Tab text="Étudiants">
+                <VBox id="tab-content" alignment="CENTER" spacing="10">
+                    <!-- Section Title -->
+                    <Label id="section-label" text="Manage Students" />
+
+                    <!-- Students Table -->
+                    <TableView fx:id="studentsTable" id="data-table">
+                        <columns>
+                            <TableColumn fx:id="studentIdColumn" text="ID" />
+                            <TableColumn fx:id="studentNameColumn" text="Name" />
+                            <TableColumn fx:id="studentClassColumn" text="Class" />
+                        </columns>
+                    </TableView>
+
+                    <!-- Button Bar -->
+                    <HBox id="button-bar" alignment="CENTER" spacing="10" style="-fx-background-size: 500;">
+                        <!-- Add Student Button -->
+                        <Button text="Add Student" />
+                        <!-- Modify Student Button -->
+                        <Button mnemonicParsing="false" text="Modify Student" />
+                        <!-- Delete Student Button -->
+                        <Button text="Delete Student" />
+                        <!-- View Details Button -->
+                        <Button text="View Details"  />
+                    </HBox>
+                </VBox>
+            </Tab>
+
+
+            <!-- Teachers Tab -->
+            <Tab text="Enseignants">
+                <VBox id="tab-content" alignment="CENTER" spacing="10">
+                    <Label id="section-label" text="Manage Teachers" />
+                    <TableView id="data-table" fx:id="teachersTable">
+                        <columns>
+                            <TableColumn fx:id="teacherIdColumn" text="ID" />
+                            <TableColumn fx:id="teacherNameColumn" text="Name" />
+                            <TableColumn fx:id="teacherSubjectColumn" text="Subject" />
+                        </columns>
+                    </TableView>
+                    <HBox id="button-bar" spacing="10">
+                        <Button text="Add Teacher" />
+                  <Button mnemonicParsing="false" text="Modify Teacher" />
+                        <Button text="Delete Teacher" />
+                        <Button text="View Details" />
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- Courses Tab -->
+            <Tab text="Filières">
+                <VBox id="tab-content" alignment="CENTER" spacing="10">
+                    <Label id="section-label" text="Manage Courses" />
+                    <TableView id="data-table" fx:id="coursesTable">
+                        <columns>
+                            <TableColumn fx:id="courseIdColumn" prefWidth="131.0" text="Filière ID" />
+                            <TableColumn fx:id="courseNameColumn" prefWidth="150.0" text="Filière Name" />
+                            <TableColumn fx:id="courseInstructorColumn" prefWidth="150.0" text="Instructeur" />
+                        </columns>
+                    </TableView>
+                    <HBox id="button-bar" spacing="10">
+                        <Button text="Add Filière" />
+                        <Button text="Delete Filière" />
+                        <Button text="View Details" />
+                    </HBox>
+                </VBox>
+            </Tab>
+         <Tab text="Matières">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+           </content>
+         </Tab>
+         <Tab text="Notes">
+           <content>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+           </content>
+         </Tab>
+        </TabPane>
+    </center>
+</BorderPane>
