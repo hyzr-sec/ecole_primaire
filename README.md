@@ -18,19 +18,3 @@ Hello! I'm **Haydar Abbassi**, aka **Hyzr**, and this is my project called **Eco
 Here is the **Use Case Diagram** for the system, which shows the different interactions between the users and the system:
 
 ![Use Case Diagram](docs/uml/use-case-diagram.png)
-
-## Getting Started
-
-To set up and run the **Ecole Primaire** project on your local machine, follow the instructions below.
-
-### Prerequisites
-
-Make sure you have the following installed on your system:
-- **Java**: Version 8 or higher
-- **Gradle**: For building and managing the project
-
-### Installation Steps
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ecole-primaire.git
