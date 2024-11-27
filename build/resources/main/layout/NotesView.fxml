@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.ecole_primaire.NotesController" spacing="20" alignment="CENTER" stylesheets="/styles/deep.css">
+    <!-- Back Button to navigate to Eleve Dashboard -->
+    <Button text="Retour au Dashboard" fx:id="backButton" onAction="#handleBackAction"
+            styleClass="back-button" />
+
+    <!-- Section Title -->
+    <Label text="Notes de l'Étudiant" styleClass="section-title"/>
+
+    <!-- Table for Notes -->
+    <TableView fx:id="noteTable" prefHeight="400" prefWidth="600" styleClass="table">
+        <columns>
+            <TableColumn fx:id="matiereColumn" text="Matière" prefWidth="300" />
+            <TableColumn fx:id="noteColumn" text="Note" prefWidth="300" />
+        </columns>
+    </TableView>
+</VBox>

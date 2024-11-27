@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ecole_primaire.TeacherNotesController">
+    <VBox alignment="CENTER" spacing="20">
+        <!-- Title Text with inline style for font size -->
+        <Text text="Student Grades" style="-fx-font-size: 24px;"/>
+
+        <TableView fx:id="notesTable" prefWidth="600" prefHeight="600">
+            <columns>
+                <TableColumn fx:id="studentNameColumn" text="Student Name" prefWidth="200"/>
+                <TableColumn fx:id="gradeColumn" text="Grade" prefWidth="100"/>
+                <TableColumn fx:id="editColumn" text="Edit" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Save Changes Button -->
+        <Button text="Save Changes" fx:id="saveButton" onAction="#handleSave"/>
+
+        <!-- Back Button -->
+        <Button text="Back" fx:id="backButton" onAction="#handleBackAction" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20 10 20;"/>
+    </VBox>
+</AnchorPane>

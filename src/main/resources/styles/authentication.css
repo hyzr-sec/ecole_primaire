@@ -89,3 +89,17 @@
 .forgot-link:hover {
     -fx-text-fill: #1f618d;
 }
+.exit-button {
+    -fx-background-color: #ff0000; /* Red color */
+    -fx-text-fill: white; /* Text color is white */
+    -fx-font-size: 14px; /* Adjust font size */
+    -fx-font-weight: bold; /* Make the text bold */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px 20px; /* Padding around the button */
+}
+
+.exit-button:hover {
+    -fx-background-color: #cc0000; /* Darker red on hover */
+    -fx-cursor: hand; /* Change cursor to a hand when hovering */
+}

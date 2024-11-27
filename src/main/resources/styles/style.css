@@ -1,0 +1,29 @@
+/* General Styling */
+* {
+    font-family: Arial, sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Teacher Profile View */
+#teacherIdField, #nameField, #emailField, #subjectField {
+    -fx-pref-width: 200px;
+    -fx-padding: 5px;
+}
+
+#updateButton {
+    -fx-padding: 10px 20px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Teacher Notes View */
+#notesTable {
+    -fx-border-color: #ddd;
+    -fx-background-color: #f9f9f9;
+}
+
+#saveButton {
+    -fx-padding: 10px 20px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}

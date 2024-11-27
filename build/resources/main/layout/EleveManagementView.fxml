@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ecole_primaire.EtudiantManagementController">
+    <top>
+        <Label text="Gestion des Élèves" styleClass="header-label"/>
+    </top>
+    <center>
+        <TableView fx:id="etudiantTable" styleClass="management-table">
+            <columns>
+                <TableColumn fx:id="colId" text="ID"/>
+                <TableColumn fx:id="colNom" text="Nom"/>
+                <TableColumn fx:id="colFiliere" text="Filière"/>
+                <TableColumn fx:id="colEmail" text="Email"/>
+                <TableColumn fx:id="colDateNaissance" text="Date de Naissance"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Ajouter" onAction="#handleAddEtudiant"/>
+            <Button text="Modifier" onAction="#handleEditEtudiant"/>
+            <Button text="Supprimer" onAction="#handleDeleteEtudiant"/>
+            <!-- Back to Dashboard Button -->
+            <Button text="Retour au Dashboard" style="-fx-background-color: red; -fx-text-fill: white;" fx:id="backToDashboardButton" onAction="#handleBackToDashboard"/>
+        </HBox>
+    </bottom>
+</BorderPane>

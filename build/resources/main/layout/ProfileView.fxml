@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/javafx" xmlns="http://javafx.com/javafx" fx:controller="com.ecole_primaire.ProfileController" alignment="CENTER" spacing="20" stylesheets="/styles/deep.css" prefWidth="600" prefHeight="600">
+    <!-- Profile Header -->
+    <Label text="Profile " styleClass="section-title"/>
+
+    <!-- Profile Information -->
+    <VBox spacing="15" alignment="CENTER" fillWidth="true">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Nom:" styleClass="label-profile"/>
+            <Label fx:id="nameLabel" styleClass="value-profile"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Filière:" styleClass="label-profile"/>
+            <Label fx:id="filiereLabel" styleClass="value-profile"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Email:" styleClass="label-profile"/>
+            <Label fx:id="emailLabel" styleClass="value-profile"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Date de Naissance:" styleClass="label-profile"/>
+            <Label fx:id="dobLabel" styleClass="value-profile"/>
+        </HBox>
+    </VBox>
+
+    <!-- Button to go back to the Dashboard -->
+    <Button text="Retour au Dashboard" fx:id="backButton" styleClass="primary-button" onAction="#handleBackAction"/>
+</VBox>
