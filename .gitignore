@@ -27,3 +27,16 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# IDE files
+.idea/
+*.iml
+
+# Build files
+target/
+
+# Backup files
+*.sql
+
+# OS-specific
+Thumbs.db
