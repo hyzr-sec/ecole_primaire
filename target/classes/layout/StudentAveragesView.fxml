@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.ecole_primaire.StudentAveragesController">
+    <!-- TableView for displaying student averages -->
+    <TableView fx:id="tableView" layoutX="10" layoutY="50" prefHeight="560" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="colStudentName" text="Nom de l'étudiant" prefWidth="300" />
+            <TableColumn fx:id="colAverage" text="Moyenne" prefWidth="300" />
+        </columns>
+    </TableView>
+
+    <!-- Back Button -->
+    <Button fx:id="backButton" text="Retour" layoutX="10" layoutY="10" onAction="#handleBack" />
+</AnchorPane>

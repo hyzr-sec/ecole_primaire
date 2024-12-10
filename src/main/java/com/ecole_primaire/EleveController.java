@@ -21,7 +21,8 @@ public class EleveController {
     private Button matiereButton;
     @FXML
     private Button filiereButton;
-
+    @FXML
+    private Button moyennesButton;
     public static String username;
 
     // Setter to pass the username
@@ -88,7 +89,10 @@ public class EleveController {
 
         loadView("/layout/NotesView.fxml", "Notes de l'Étudiant");
     }
-
+    @FXML
+    private void handleMoyennes(ActionEvent event) {
+        loadView("/layout/StudentAveragesView.fxml", "Moyennes des Étudiants");
+    }
     @FXML
     private void handleLogout() {
         // Show confirmation dialog

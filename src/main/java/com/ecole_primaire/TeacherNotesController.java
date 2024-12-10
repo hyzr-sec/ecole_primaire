@@ -80,6 +80,7 @@ public class TeacherNotesController {
 
             if (rs.next()) {
                 int matiereId = rs.getInt("matiere_id");
+                System.out.println(matiereId);
 
                 // Query to get students studying the same matiere
                 String studentQuery = "SELECT s.nom_etudiant, n.note FROM note n " +

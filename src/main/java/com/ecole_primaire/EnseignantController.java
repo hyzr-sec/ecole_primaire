@@ -12,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class EnseignantController {
 
@@ -68,10 +71,23 @@ public class EnseignantController {
 
     @FXML
     private void handleNotes() {
-        try {
-            TeacherNotesController controller = new TeacherNotesController();
-            controller.setSubject("Math");  // Example, replace with actual logic to get the subject
-            controller.setUsername(username);  // Pass teacher's username (email)
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            // Query to get the subject based on the teacher's username (email)
+            String query = "SELECT nom_matiere FROM matiere " +
+                    "INNER JOIN enseignant ON matiere.enseignant_id = enseignant.enseignant_id " +
+                    "WHERE enseignant.email = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);  // Use the teacher's email (username)
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String subject = rs.getString("nom_matiere");  // Fetch the subject
+
+                // Pass the fetched subject to the TeacherNotesController
+                TeacherNotesController controller = new TeacherNotesController();
+                controller.setSubject(subject);
+                controller.setUsername(username);
+            }
             // Load the FXML file for TeacherNotesView
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/layout/TeacherNotesView.fxml"));
             Parent root = loader.load();  // This will load the FXML and return the root node

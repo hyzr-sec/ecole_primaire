@@ -5,8 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
+    static {
+        try {
+            // Register the MariaDB JDBC driver
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static final String URL = "jdbc:mariadb://localhost:3306/ecole_primaire";
-    private static final String USER = "java";
+    private static final String USER = "root";
     private static final String PASSWORD = "my_very_good_password";
     private static Connection connection;
 

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.mariadb.jdbc.Statement;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -80,9 +81,11 @@ public class EtudiantManagementController {
             String[] fields = input.split(",");
             if (fields.length == 4) {
                 try (Connection conn = DatabaseConnection.getConnection()) {
+                    conn.setAutoCommit(false); // Start transaction
+
                     // Insert into the 'etudiant' table
                     String etudiantQuery = "INSERT INTO etudiant (nom_etudiant, filiere_id, email, date_naissance) VALUES (?, ?, ?, ?)";
-                    PreparedStatement stmtEtudiant = conn.prepareStatement(etudiantQuery);
+                    PreparedStatement stmtEtudiant = conn.prepareStatement(etudiantQuery, Statement.RETURN_GENERATED_KEYS);
                     stmtEtudiant.setString(1, fields[0]);
                     stmtEtudiant.setInt(2, Integer.parseInt(fields[1]));
                     stmtEtudiant.setString(3, fields[2]);
@@ -90,9 +93,7 @@ public class EtudiantManagementController {
                     stmtEtudiant.executeUpdate();
 
                     // Get the newly inserted 'etudiant' ID
-                    String getLastIdQuery = "SELECT LAST_INSERT_ID()";
-                    PreparedStatement stmtGetId = conn.prepareStatement(getLastIdQuery);
-                    ResultSet rs = stmtGetId.executeQuery();
+                    ResultSet rs = stmtEtudiant.getGeneratedKeys();
                     int newEtudiantId = 0;
                     if (rs.next()) {
                         newEtudiantId = rs.getInt(1);
@@ -106,9 +107,29 @@ public class EtudiantManagementController {
                     stmtUser.setString(3, "eleve"); // role
                     stmtUser.executeUpdate();
 
+                    // Get the matieres for the given filiere
+                    String matieresQuery = "SELECT matiere_id FROM matiere WHERE filiere_id = ?";
+                    PreparedStatement stmtMatieres = conn.prepareStatement(matieresQuery);
+                    stmtMatieres.setInt(1, Integer.parseInt(fields[1]));
+                    ResultSet matieresRs = stmtMatieres.executeQuery();
+
+                    // Insert initial notes for each matiere
+                    String noteQuery = "INSERT INTO note (id_etudiant, matiere_id, note) VALUES (?, ?, ?)";
+                    PreparedStatement stmtNote = conn.prepareStatement(noteQuery);
+                    while (matieresRs.next()) {
+                        int matiereId = matieresRs.getInt("matiere_id");
+                        stmtNote.setInt(1, newEtudiantId);
+                        stmtNote.setInt(2, matiereId);
+                        stmtNote.setInt(3, 0); // Initial note is 0
+                        stmtNote.addBatch();
+                    }
+                    stmtNote.executeBatch();
+
+                    conn.commit(); // Commit transaction
+
                     // Refresh the table
                     loadEtudiants();
-                    showAlert(Alert.AlertType.INFORMATION, "Success", "Étudiant and User account added successfully.");
+                    showAlert(Alert.AlertType.INFORMATION, "Success", "Étudiant, User account, and initial notes added successfully.");
                 } catch (SQLException e) {
                     e.printStackTrace();
                     showAlert(Alert.AlertType.ERROR, "Error", "Failed to add étudiant and user: " + e.getMessage());
@@ -118,6 +139,7 @@ public class EtudiantManagementController {
             }
         });
     }
+
 
     @FXML
     private void handleEditEtudiant() {

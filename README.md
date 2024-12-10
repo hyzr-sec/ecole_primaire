@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Hello! I'm **Haydar Abbassi**, aka **Hyzr**, and this is my project called **Ecole Primaire**. It's a school management system designed to help teachers and administrators manage student information, grades, and other academic details. The project focuses on creating a user-friendly and efficient interface for educators to track and maintain data on student performance.
+Hello! I'm **Haydar Abessi**, aka **Hyzr**, and this is my project called **Ecole Primaire**. It's a school management system designed to help teachers and administrators manage student information, grades, and other academic details. The project focuses on creating a user-friendly and efficient interface for educators to track and maintain data on student performance.
 
 ## Features and Capabilities
 
@@ -18,3 +18,7 @@ Hello! I'm **Haydar Abbassi**, aka **Hyzr**, and this is my project called **Eco
 Here is the **Use Case Diagram** for the system, which shows the different interactions between the users and the system:
 
 ![Use Case Diagram](docs/uml/use-case-diagram.png)
+
+Here is the **Class Diagram** for the system, which shows the different interactions between the users and the system:
+
+![Class Diagram](docs/uml/class-diagram.png)

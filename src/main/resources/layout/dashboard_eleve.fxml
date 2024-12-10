@@ -25,6 +25,7 @@
             <Button fx:id="filiereButton" text="Profile" styleClass="dashboard-button" onAction="#handleProfile"/>
             <Button fx:id="matiereButton" text="Matière" styleClass="dashboard-button" onAction="#handleMatiere"/>
             <Button fx:id="notesButton" text="Notes" styleClass="dashboard-button" onAction="#handleNotes"/>
+            <Button fx:id="moyennesButton" styleClass="dashboard-button" onAction="#handleMoyennes" text="Moyennes des Étudiants"/>
         </VBox>
         <Button fx:id="logoutButton" text="Log Out" styleClass="logout-button" onAction="#handleLogout" />
     </VBox>

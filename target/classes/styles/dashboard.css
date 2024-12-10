@@ -1,0 +1,127 @@
+/* General Styling */
+.root {
+    -fx-font-family: 'Arial';
+    -fx-background-color: transparent;
+}
+
+/* Background Image */
+.background-image {
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    -fx-background-color: rgba(255, 255, 255, 0.8); /* White background with slight opacity */
+    -fx-background-radius: 20px;
+    -fx-padding: 40px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #eeeeee;
+    -fx-border-width: 2px;
+}
+
+/* Logo Styling */
+.dashboard-logo {
+    -fx-opacity: 0.8;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E3A8A; /* Dark Blue */
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+/* Button Container */
+.button-container {
+    -fx-spacing: 30px;
+}
+
+/* Menu Button Styling */
+.dashboard-button {
+    -fx-font-size: 18px;
+    -fx-padding: 15px 30px;
+    -fx-background-color: #1E3A8A; /* Blue background */
+    -fx-text-fill: white;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-min-width: 200px;
+    -fx-max-width: 300px;
+    -fx-min-height: 50px;
+    -fx-max-height: 60px;
+}
+
+/* Hover Effect for Buttons */
+.dashboard-button:hover {
+    -fx-background-color: #1D4ED8; /* Lighter Blue */
+    -fx-cursor: hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Pressed State for Buttons */
+.dashboard-button:pressed {
+    -fx-background-color: #1E40AF; /* Even darker blue */
+}
+.logout-button {
+    -fx-background-color: #ff0000; /* Red color */
+    -fx-text-fill: white; /* Text color is white */
+    -fx-font-size: 14px; /* Adjust font size */
+    -fx-font-weight: bold; /* Make the text bold */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px 20px; /* Padding around the button */
+}
+
+.logout-button:hover {
+    -fx-background-color: #cc0000; /* Darker red on hover */
+    -fx-cursor: hand; /* Change cursor to a hand when hovering */
+}
+/* General Styles */
+.root {
+    -fx-background-color: #f7f9fc;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.header-bar {
+    -fx-background-color: #2a9df4;
+    -fx-padding: 10;
+}
+
+.header-title {
+    -fx-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.management-table {
+    -fx-pref-height: 400;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+}
+
+.action-bar {
+    -fx-background-color: #ffffff;
+}
+
+.action-button {
+    -fx-background-color: #2a9df4;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 5 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.action-button:hover {
+    -fx-background-color: #1e80d6;
+}
+
+.action-button:pressed {
+    -fx-background-color: #165ba8;
+}

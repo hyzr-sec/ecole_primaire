@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 public class DirecteurController {
@@ -22,6 +23,9 @@ public class DirecteurController {
     private Button enseignantButton;
     @FXML
     private Button filiereButton;
+    @FXML
+    private Button moyennesButton;
+
 
     @FXML
     public void initialize() {
@@ -29,6 +33,7 @@ public class DirecteurController {
         setButtonProperties(eleveButton, "/assets/eleve_icon.png", "Manage Élèves");
         setButtonProperties(enseignantButton, "/assets/enseignant_icon.png", "Manage Enseignants");
         setButtonProperties(filiereButton, "/assets/filiere_icon.png", "Manage Filières");
+        setButtonProperties(moyennesButton, "/assets/moyenne.png", "Moyennes élèves");
     }
 
     private void setButtonProperties(Button button, String iconPath, String tooltipText) {
@@ -56,6 +61,11 @@ public class DirecteurController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleMoyennes(ActionEvent event) {
+        navigateToView("/layout/StudentAveragesView.fxml", "Moyennes des Étudiants");
+    }
+
 
     @FXML
     private void handleEleve(ActionEvent event) {
