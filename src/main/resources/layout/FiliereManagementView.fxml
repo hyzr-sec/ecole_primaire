@@ -7,20 +7,37 @@
         <Label text="Gestion des Filières" styleClass="header-label"/>
     </top>
     <center>
-        <TableView fx:id="filiereTable" styleClass="management-table">
-            <columns>
-                <TableColumn fx:id="colId" text="ID"/>
-                <TableColumn fx:id="colName" text="Nom"/>
-                <TableColumn fx:id="colDescription" text="Description"/>
-            </columns>
-        </TableView>
+        <VBox spacing="10">
+            <!-- Filiere Table -->
+            <TableView fx:id="filiereTable" styleClass="management-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID"/>
+                    <TableColumn fx:id="colName" text="Nom"/>
+                </columns>
+            </TableView>
+            <!-- Filiere Buttons -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Ajouter" fx:id="addFiliereButton" onAction="#handleAddFiliere"/>
+                <Button text="Modifier" fx:id="editFiliereButton" onAction="#handleEditFiliere"/>
+                <Button text="Supprimer" fx:id="deleteFiliereButton" onAction="#handleDeleteFiliere"/>
+            </HBox>
+            <!-- Matiere Table -->
+            <TableView fx:id="matiereTable" styleClass="management-table">
+                <columns>
+                    <TableColumn fx:id="colMatiereId" text="ID Matière"/>
+                    <TableColumn fx:id="colMatiereName" text="Nom Matière"/>
+                    <TableColumn fx:id="colEnseignantId" text="ID Enseignant"/>
+                </columns>
+            </TableView>
+            <!-- Matiere Buttons -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Ajouter" fx:id="addMatiereButton" onAction="#handleAddMatiere"/>
+
+            </HBox>
+        </VBox>
     </center>
     <bottom>
         <HBox spacing="10" alignment="CENTER">
-            <Button text="Ajouter" fx:id="addFiliereButton" onAction="#handleAddFiliere"/>
-            <Button text="Modifier" fx:id="editFiliereButton" onAction="#handleEditFiliere"/>
-            <Button text="Supprimer" fx:id="deleteFiliereButton" onAction="#handleDeleteFiliere"/>
-            <!-- Back to Dashboard Button -->
             <Button text="Retour au Dashboard" style="-fx-background-color: red; -fx-text-fill: white;" fx:id="backToDashboardButton" onAction="#handleBackToDashboard"/>
         </HBox>
     </bottom>

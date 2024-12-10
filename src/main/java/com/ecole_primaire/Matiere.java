@@ -1,19 +1,42 @@
 package com.ecole_primaire;
 
 public class Matiere {
-    private int id;
-    private String name;
+    private int matiereId;
+    private String nomMatiere;
+    private Integer enseignantId;  // Can be null if no enseignant is assigned
 
-    public Matiere(int id, String name) {
-        this.id = id;
-        this.name = name;
+    // Constructor
+    public Matiere(int matiereId, String nomMatiere) {
+        this.matiereId = matiereId;
+        this.nomMatiere = nomMatiere;
+    }
+    public Matiere(int matiereId, String nomMatiere, Integer enseignantId) {
+        this.matiereId = matiereId;
+        this.nomMatiere = nomMatiere;
+        this.enseignantId = enseignantId;
     }
 
+    // Getters
     public int getId() {
-        return id;
+        return matiereId;
     }
 
     public String getName() {
-        return name;
+        return nomMatiere;
+    }
+
+    public Integer getEnseignantId() {
+        return enseignantId;
+    }
+
+    // Setters
+    public void setEnseignantId(Integer enseignantId) {
+        this.enseignantId = enseignantId;
+    }
+
+    // Override toString() to display name and enseignant_id together
+    @Override
+    public String toString() {
+        return nomMatiere + " (Enseignant ID: " + (enseignantId != null ? enseignantId : "None") + ")";
     }
 }
