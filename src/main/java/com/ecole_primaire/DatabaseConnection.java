@@ -15,7 +15,7 @@ public class DatabaseConnection {
     }
 
     private static final String URL = "jdbc:mariadb://localhost:3306/ecole_primaire";
-    private static final String USER = "java";
+    private static final String USER = "root";
     private static final String PASSWORD = "my_very_good_password";
     private static Connection connection;
 

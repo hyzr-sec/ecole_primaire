@@ -47,7 +47,7 @@ public class TeacherNotesController {
 
     @FXML
     public void initialize() throws Exception{
-        conn = DatabaseConnection.getConnection();
+        conn = DatabaseConnection.getConnection(); // Establish connection
         studentNameColumn.setCellValueFactory(cellData -> cellData.getValue().studentNameProperty());
         gradeColumn.setCellValueFactory(cellData -> cellData.getValue().gradeProperty());
 
@@ -70,6 +70,21 @@ public class TeacherNotesController {
     }
 
     private void loadStudentGrades() {
+        // Ensure the connection is open
+        try {
+            if (conn == null || conn.isClosed()) {
+                try {
+                    conn = DatabaseConnection.getConnection();  // Reconnect if closed
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    showError("Connection Error", "Unable to re-establish the connection.");
+                    return;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         // Query to get the teacher's matiere_id
         String matiereQuery = "SELECT matiere_id FROM matiere " +
                 "JOIN enseignant e ON e.enseignant_id = matiere.enseignant_id " +
@@ -123,21 +138,56 @@ public class TeacherNotesController {
 
     @FXML
     private void handleSave() {
-        // Update the grade in the database
-        for (StudentGrade studentGrade : studentGrades) {
-            String updateGradeQuery = "UPDATE note SET note = ? WHERE id_etudiant = (SELECT id_etudiant FROM etudiant WHERE nom_etudiant = ?) AND matiere_id = (SELECT matiere_id FROM matiere WHERE nom_matiere = ?)";
-            try (PreparedStatement stmt = conn.prepareStatement(updateGradeQuery)) {
-                stmt.setString(1, studentGrade.getGrade());
-                stmt.setString(2, studentGrade.getStudentName());
-                stmt.setString(3, subject); // Assuming subject is the teacher's subject
-                stmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                showError("Database Error", "Error updating grades.");
+        try {
+            if (conn == null || conn.isClosed()) {
+                try {
+                    conn = DatabaseConnection.getConnection();  // Reconnect if closed
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    showError("Connection Error", "Unable to re-establish the connection.");
+                    return;
+                }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-        showSuccess("Grades updated successfully!");
+        // Start a transaction for updating grades
+        try {
+            conn.setAutoCommit(false); // Disable auto-commit
+
+            for (StudentGrade studentGrade : studentGrades) {
+                String updateGradeQuery = "UPDATE note SET note = ? WHERE id_etudiant = (SELECT id_etudiant FROM etudiant WHERE nom_etudiant = ?) AND matiere_id = (SELECT matiere_id FROM matiere WHERE nom_matiere = ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(updateGradeQuery)) {
+                    stmt.setString(1, studentGrade.getGrade());
+                    stmt.setString(2, studentGrade.getStudentName());
+                    stmt.setString(3, subject); // Assuming subject is the teacher's subject
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    conn.rollback();  // Rollback if error occurs during any update
+                    e.printStackTrace();
+                    showError("Database Error", "Error updating grades.");
+                    return;
+                }
+            }
+
+            conn.commit();  // Commit if all updates succeed
+            showSuccess("Grades updated successfully!");
+        } catch (SQLException e) {
+            try {
+                conn.rollback();  // Rollback the transaction if any error occurs
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+            e.printStackTrace();
+            showError("Database Error", "Transaction failed.");
+        } finally {
+            try {
+                conn.setAutoCommit(true);  // Restore auto-commit after the transaction
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void showError(String title, String message) {
@@ -155,6 +205,7 @@ public class TeacherNotesController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     @FXML
     private void handleBackAction() {
         try {
