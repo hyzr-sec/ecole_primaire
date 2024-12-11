@@ -208,7 +208,7 @@ public class FiliereManagementController {
                     if (matiereId != -1) {
                         // Insert default grades for all students (note = 0)
                         String insertGradesQuery = "INSERT INTO note (id_etudiant, matiere_id, note) " +
-                                "SELECT id_etudiant, ?, 0 FROM etudiant";
+                                "SELECT id_etudiant, ?, 0 FROM etudiant where filiere_id="+selectedFiliere;
                         PreparedStatement gradeStmt = conn.prepareStatement(insertGradesQuery);
                         gradeStmt.setInt(1, matiereId);
                         gradeStmt.executeUpdate();
